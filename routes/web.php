@@ -1,17 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormAggregator;
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/', action: function () {
+    return view('form/form');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+Route::post('/', [FormAggregator::class, 'handleForm'])
+    ->name('form.handle');
