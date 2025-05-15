@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Sample Form</h1>
-        <form action="{{route('form.handle')}}" method="POST">
+        <form action="{{route('form-get')}}" method="GET">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
