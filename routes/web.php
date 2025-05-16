@@ -6,17 +6,14 @@ use App\Http\Controllers\FormParameterAggregator;
 
 
 
-Route::get('/', function() {
-    return view('form/form');
-});
+Route::get('/', function(){
+    return view('home');
+})->name('home');
 
+Route::get('/contact', function(){
+    return view('contact');
+})->name('contact');
 
-Route::get('/get-form', [FormParameterAggregator::class, 'getFormData'])
-    ->name('form-get');
-
-
-Route::post('/', action: [FormAggregator::class, 'handleForm'])
-    ->name('form.handle');
-
-Route::post('/', [FormAggregator::class, 'handleForm'])
-    ->name('form.handle');
+Route::get('/about', function(){
+    return view('about');
+})->name('about');
