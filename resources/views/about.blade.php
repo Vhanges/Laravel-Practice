@@ -1,5 +1,7 @@
 <x-layout>
-
+    <x-slot:heading>
+        About Us
+    </x-slot:heading>
     <div style="max-width: 600px; margin: 40px auto 0 auto; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 16px; color: #2d3748;">About Us</h1>
         <p style="color: #4a5568; margin-bottom: 8px;">
