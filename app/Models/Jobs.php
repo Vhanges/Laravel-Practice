@@ -6,37 +6,35 @@ use Dom\Attr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
-class Jobs
+class Jobs extends Model
 {
-    public static function all():array {
-        return [
-            [
-                'id' => 1,
-                'title' => 'Director',
-                'salary' => 'PHP 100,000', 
-            ],
-            [
-                'id' => 2,  
-                'title' => 'Programmer',
-                'salary' => 'PHP 80,000', 
-            ],
-            [   
-                'id' => 3,
-                'title' => 'Teacher',
-                'salary' => 'PHP 50,000', 
-            ],
-        ];
-    }
 
-    public static function find($id): array {
-        $job = Arr::first(self::all(), fn($job) => $job['id'] == $id);
-        
-        if(! $job) {
-            abort(404);
-        }
-
-        return $job;
+    /**
+     *  $table used when you are accessing a table using laravel in-house 
+     *  function because by default laravel treats the class name
+     *  as the table name. Therefore it is important to create table variable and assign 
+     *  the actual name of the table you are targeting 
+     */
 
 
-    }
+    protected $table = 'job_listing';
+    
+    /**
+     * The $fillable array specifies which attributes can be mass assigned.
+     * Defining this helps prevent mass assignment vulnerabilities, where a user might inject unexpected attributes.
+     * Example: Without proper protection, someone could override an 'is_admin' field and grant themselves admin access.
+     * Always define $fillable to ensure only intended attributes can be mass assigned.
+     */
+
+    protected $fillable = ['title', 'salary'];
+
+
+    /**
+     * The $guarded array specifies which attributes **cannot** be mass assigned.
+     * If an attribute is listed here, Laravel will block any attempt to modify it via mass assignment.
+     * Example: Guarding an 'is_admin' field prevents unauthorized users from elevating their privileges.
+     * If $guarded = [] (an empty array), it means **all** attributes are mass assignable, which can be dangerous!
+     */
+
+    // protected $guarded = ['is_admin']; // Example attribute that should never be mass assigned
 }
