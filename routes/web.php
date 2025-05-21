@@ -5,7 +5,7 @@ use App\Models\Jobs;
 
 Route::get('/', function(){
 
-    return view('home');
+    return view('Layout/master');
     
-})->name('home');
+})->name('master');
 
