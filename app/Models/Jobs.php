@@ -5,9 +5,11 @@ namespace App\Models;
 use Dom\Attr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Jobs extends Model
 {
+    use HasFactory;
 
     /**
      *  $table used when you are accessing a table using laravel in-house 
