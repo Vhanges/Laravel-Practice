@@ -39,4 +39,10 @@ class Jobs extends Model
      */
 
     // protected $guarded = ['is_admin']; // Example attribute that should never be mass assigned
+
+    public function employer() {
+
+        return $this->belongsTo(Employer::class);
+
+    }
 }
