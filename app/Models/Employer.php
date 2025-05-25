@@ -12,6 +12,7 @@ class Employer extends Model
 
     public function jobs(){
 
+        //One to Many
         return $this->hasMany(Jobs::class);
         
     }
