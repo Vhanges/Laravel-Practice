@@ -28,7 +28,7 @@ class Jobs extends Model
      * Always define $fillable to ensure only intended attributes can be mass assigned.
      */
 
-    protected $fillable = ['title', 'salary'];
+    protected $fillable = ['title', 'salary', 'employer_id'];
 
 
     /**
