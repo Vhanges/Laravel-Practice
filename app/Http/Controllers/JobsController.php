@@ -12,7 +12,7 @@ class JobsController extends Controller
 
         $jobs = Jobs::with('employer')->latest()->simplePaginate(3);
 
-        return view('jobs/index', [
+        return view('/jobs/index', [
                 'jobs' => $jobs
         ]);
 
