@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use App\Models\Jobs;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobsController extends Controller
 {
@@ -11,8 +15,9 @@ class JobsController extends Controller
     {
 
         $jobs = Jobs::with('employer')->latest()->simplePaginate(3);
+        
 
-        return view('/jobs/index', [
+        return view('/jobs/index', data: [
                 'jobs' => $jobs
         ]);
 
@@ -30,6 +35,9 @@ class JobsController extends Controller
     public function store() 
     {
         
+        $employer = Employer::where('user_id', Auth::id())->first();
+
+
         request()->validate([
             'title' => ['required', 'min:3'],
             'salary' => ['required']
@@ -38,7 +46,7 @@ class JobsController extends Controller
         Jobs::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => '1',
+            'employer_id' => $employer->id,
         ]);
 
         return redirect('/jobs');
@@ -46,6 +54,9 @@ class JobsController extends Controller
     }
     public function edit(Jobs $job) 
     {
+
+
+        // Gate::authorize('edit-job', $job);
 
         return view('jobs/edit', ['job' => $job] );
 
