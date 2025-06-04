@@ -3,7 +3,27 @@
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Facades\Route;
+
+Route::get('test-mail', function(){
+
+    $data = [
+        'name' => 'John Doe',
+        'job' => 'Developer',
+        'random' => rand(1, 100)
+    ];
+
+    Mail::to('angelosevhen@gmail.com')->send(
+        new TestMail($data)
+    );
+
+    return "I THINK IT WORKED";
+
+});
+
 
 // Home Page
 Route::view('/', 'home')->name('home');
